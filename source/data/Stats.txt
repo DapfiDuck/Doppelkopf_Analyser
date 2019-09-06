@@ -1,0 +1,19 @@
+Statistics for D:
+    Re:         70.5% (31 of 44)
+    Contra:     28.0% (14 of 50)
+    Total:      46.9% (45 of 96)
+
+Statistics for A:
+    Re:         69.6% (32 of 46)
+    Contra:     27.1% (13 of 48)
+    Total:      46.9% (45 of 96)
+
+Statistics for M:
+    Re:         74.1% (40 of 54)
+    Contra:     32.5% (13 of 40)
+    Total:      55.2% (53 of 96)
+
+Statistics for P:
+    Re:         70.5% (31 of 44)
+    Contra:     28.0% (14 of 50)
+    Total:      46.9% (45 of 96)

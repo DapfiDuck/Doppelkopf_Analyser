@@ -24,9 +24,9 @@ Die einzelnen Spiele werden im csv-Format gespeichert und vom Programm beim Star
 ## Auswertung des Gesamt-Spiels
 Für jede Zeile wird gezählt, welche Partei gewonnen hat. Ist der Wert des Spiels positiv, hat die Re-Partei gewonnen, ist er negativ die Contra-Partei und andererseits ist es ein Unentschieden. Sonderspiele (Hochzeit, Trumpfarmut, Solor, etc.) werden hierbei nicht gezählt. Sind die Daten erhoben kann berechnet werden:
 
-> f: Gewinnrate 
- w: Anzahl der gewonnenen Spiele
- p: Anzahl der gespielten Spiele
+> f: Gewinnrate
+> w: Anzahl der gewonnenen Spiele
+> p: Anzahl der gespielten Spiele
 
 $$
 f_{Partei} = \frac{w_{Partei}}{p_{Partei}}
@@ -66,7 +66,7 @@ if playerscore > previous_playerscore:
 	player_party = winning_party
 else:
 	player_party = loosing_party
-``` 
+```
 
 Hat der Spieler die jeweilige Runde gewonnen, so wird auf seine Gewinnrunden und die Teilnahmen für die jeweilige Partei einen aufgezählt, sonst nur auf die Teilnahmen der verlierenden Partei.
 

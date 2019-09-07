@@ -72,5 +72,5 @@ Hat der Spieler die jeweilige Runde gewonnen, so wird auf seine Gewinnrunden und
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwNTk0NDEyMDFdfQ==
+eyJoaXN0b3J5IjpbMTUxNjY1MzEwN119
 -->

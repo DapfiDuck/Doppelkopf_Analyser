@@ -22,7 +22,7 @@ Es ist für jeden Spieler, wie auch für das Spiel insgesammt pro Partei die Gew
 Die einzelnen Spiele werden im csv-Format gespeichert und vom Programm beim Start eingelesen.
 
 ## Auswertung des Gesamt-Spiels
-Für jede Zeile wird gezählt, welche Partei gewonnen hat. Ist der Wert des Spiels positiv, hat die Re-Partei gewonnen, ist er negativ die Contra-Partei und andererseits ist es ein Unentschieden. Sonderspiele (Hochzeit, Trumpfarmut, Solor, etc.) werden hierbei nicht gezählt. Sind die Daten erhoben kann berechnet werden:
+Für jede Zeile wird gezählt, welche Partei gewonnen hat. Ist der Wert des Spiels positiv, hat die Re-Partei gewonnen, ist er negativ die Contra-Partei und andererseits liegt ein Unentschieden vor. Sonderspiele (Hochzeit, Trumpfarmut, Solor, etc.) werden hierbei nicht gezählt. Sind die Daten erhoben kann berechnet werden:
 
 > f: Gewinnrate
 > w: Anzahl der gewonnenen Spiele
@@ -72,5 +72,5 @@ Hat der Spieler die jeweilige Runde gewonnen, so wird auf seine Gewinnrunden und
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3NjY2MzM5NjUsMTUxNjY1MzEwN119
+eyJoaXN0b3J5IjpbNzY1MDEwMTk3LDE1MTY2NTMxMDddfQ==
 -->

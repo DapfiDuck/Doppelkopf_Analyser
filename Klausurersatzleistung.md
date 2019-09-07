@@ -15,7 +15,7 @@ Doppelkopf ist ein Kartenspiel in dem es darum geht las spiel von zwei Personen 
 
 
 # Aufgabe
-Es ist für jeden Spieler, wie auch für das Spiel insgesammt pro Partei die Gewinnchance zu ermitteln. Zudem soll die Durchschnittliche Wertigkeit eines gewonnen Spiels für jeden Spieler errechnet werden.
+Es ist für jeden Spieler, wie auch für das Spiel insgesammt pro Partei die Gewinnchance zu ermitteln. Zudem soll die durchschnittliche Wertigkeit eines gewonnen Spiels für jeden Spieler errechnet werden.
 
 # Durchführung
 
@@ -72,5 +72,5 @@ Hat der Spieler die jeweilige Runde gewonnen, so wird auf seine Gewinnrunden und
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTUxNjY1MzEwN119
+eyJoaXN0b3J5IjpbLTE3NjY2MzM5NjUsMTUxNjY1MzEwN119
 -->

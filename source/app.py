@@ -35,9 +35,9 @@ for sheet in sheets:
         # print(str(row)+"\n")
     # print("\n")
 
-re = round(wins[0]/games*1000)/10
-contra = round(wins[1]/games*1000)/10
-ties = round(wins[2]/games*1000)/10
+re = percent(wins[0]/games)
+contra = percent(wins[1]/games)
+ties = percent(wins[2]/games)
 
 #print("\nStatistics: ")
 print(f"Re: {re}%, Contra: {contra}%, Ties: {ties}%")

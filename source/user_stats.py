@@ -5,6 +5,35 @@ other_party = {
     "c":"r"
 }
 
+def get_win_percentage_for_game(sheets):
+
+    games = 0
+
+    win_percentage = {
+        "D":0,
+        "A":0,
+        "M":0,
+        "P":0
+    }
+
+    for sheet in sheets:
+        players = sheet[0]
+        final_row = sheet[len(sheet)-2]
+
+        for cell_nr in range(4):
+            current_player = players[cell_nr]
+
+            if int(final_row[cell_nr]) > 0:
+                win_percentage[current_player] +=1
+
+        games += 1
+
+
+    for player in win_percentage:
+        win_percentage[player] /= games
+
+    return win_percentage
+
 def gen_user_stats(sheets):
 
     games = {

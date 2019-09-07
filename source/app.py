@@ -1,5 +1,6 @@
 from csv_reader import get_sheet as get
 from user_stats import gen_user_stats
+from user_stats import get_win_percentage_for_game as win_percentage
 
 sheet_nr = int(input("Sheets: "))
 sheets = []
@@ -66,7 +67,7 @@ for user in player_list:
     total_wins = rwins + cwins
     total_rate = percent(total_wins / total_games)
 
-    print(f"""Statistics for {user}:
+    print(f"""Win Percentage for {user} (Rounds):
     Re:\t\t{rrate}% ({rwins} of {rgames})
     Contra:\t{crate}% ({cwins} of {cgames})
     Total:\t{total_rate}% ({total_wins} of {total_games})
@@ -75,5 +76,15 @@ for user in player_list:
     Re:\t\t{rscore}
     Contra:\t{cscore}
     """)
+
+win_percentage = win_percentage(sheets)
+
+print(f"""Win Percentage over all games:
+    D: {percent(win_percentage["D"])}%
+    A: {percent(win_percentage["A"])}%
+    M: {percent(win_percentage["M"])}%
+    P: {percent(win_percentage["P"])}%
+""")
+
     #Full stats: {player_stat}
 #print(f"Total Games: {player_stats['Total']}")

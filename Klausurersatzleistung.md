@@ -15,16 +15,16 @@ Doppelkopf ist ein Kartenspiel in dem es darum geht las spiel von zwei Personen 
 
 
 # Aufgabe
-Es ist für jeden Spieler, wie auch für das Spiel insgesammt pro Partei die Gewinnchance zu ermitteln. Zudem soll die durchschnittliche Wertigkeit eines gewonnen Spiels für jeden Spieler errechnet werden.
+Es ist für jeden Spieler, wie auch für das Spiel insgesammt pro Partei die Gewinnchance zu ermitteln. Zudem soll die dDurchschnittliche Wertigkeit eines gewonnen Spiels für jeden Spieler errechnet werden.
 
 # Durchführung
 
 Die einzelnen Spiele werden im csv-Format gespeichert und vom Programm beim Start eingelesen.
 
 ## Auswertung des Gesamt-Spiels
-Für jede Zeile wird gezählt, welche Partei gewonnen hat. Ist der Wert des Spiels positiv, hat die Re-Partei gewonnen, ist er negativ die Contra-Partei und andererseits liegt ein Unentschieden vor. Sonderspiele (Hochzeit, Trumpfarmut, Solor, etc.) werden hierbei nicht gezählt. Sind die Daten erhoben kann berechnet werden:
+Für jede Zeile wird gezählt, welche Partei gewonnen hat. Ist der Wert des Spiels positiv, hat die Re-Partei gewonnen, ist er negativ die Contra-Partei und andererseits liegtist es ein Unentschieden vor. Sonderspiele (Hochzeit, Trumpfarmut, Solor, etc.) werden hierbei nicht gezählt. Sind die Daten erhoben kann berechnet werden:
 
-> f: Gewinnrate
+> f: Gewinnrate 
 > w: Anzahl der gewonnenen Spiele
 > p: Anzahl der gespielten Spiele
 
@@ -66,11 +66,12 @@ if playerscore > previous_playerscore:
 	player_party = winning_party
 else:
 	player_party = loosing_party
-```
+``` 
 
 Hat der Spieler die jeweilige Runde gewonnen, so wird auf seine Gewinnrunden und die Teilnahmen für die jeweilige Partei einen aufgezählt, sonst nur auf die Teilnahmen der verlierenden Partei.
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNzY1MDEwMTk3LDE1MTY2NTMxMDddfQ==
+eyJoaXN0b3J5IjpbLTE3ODEyNzc1NjUsNzY1MDEwMTk3LDE1MT
+Y2NTMxMDddfQ==
 -->

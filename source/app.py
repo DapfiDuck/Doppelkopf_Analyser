@@ -1,90 +1,87 @@
 from csv_reader import get_sheet as get
 from user_stats import gen_user_stats
 from user_stats import get_win_percentage_for_game as win_percentage
+import game_stats
 
 sheet_nr = int(input("Sheets: "))
 sheets = []
-games = 0
-wins = [0, 0, 0] #Reh, Contra, Tie
+
+def main():
+
+    # Load sheets
+    for number in range(1, sheet_nr+1):
+        sheets.append(get(f"./data/Game{number}.csv"))
+
+    print_game_stats();
+    print_player_stats();
+
+    return
+
 
 def percent(float, decimals = 1):
     return round(float * (10 ** (decimals+2)))/(10**decimals)
 
-for number in range(1, sheet_nr+1):
-    sheets.append(get(f"./data/Game{number}.csv"))
 
-# print(sheets)
+def print_game_stats():
 
-for sheet in sheets:
-    for row_int in range(1, len(sheet)):
+    game_statistics = game_stats.generate_game_stats(sheets)
+    wins = game_statistics[0]
+    games = game_statistics[1]
 
-        row = sheet[row_int]
-        # print(row)
+    re = percent(wins[0]/games)
+    contra = percent(wins[1]/games)
+    ties = percent(wins[2]/games)
 
-        if len(row) == 5:
+    #print("\nStatistics: ")
+    print("\n|"+"-"*40+"|\n")
+    print(f"Re: {re}%, Contra: {contra}%, Ties: {ties}%")
+    print("\n")
+    return
 
-            games += 1
 
-            if int(row[4]) >= 1:
-                wins[0] += 1
-            elif int(row[4]) <= -1:
-                wins[1] += 1
-            else:
-                wins[2] += 1
+def print_player_stats():
+    player_statistics = gen_user_stats(sheets)
 
-        # print(str(row)+"\n")
-    # print("\n")
+    player_list = ["D", "A", "M", "P"]
 
-re = percent(wins[0]/games)
-contra = percent(wins[1]/games)
-ties = percent(wins[2]/games)
+    for user in player_list:
+        player = player_statistics[user]
 
-#print("\nStatistics: ")
-print(f"Re: {re}%, Contra: {contra}%, Ties: {ties}%")
-print("\n")
+        #Statistics for Re
+        rgames = player["r"]["played"]
+        rwins = player["r"]["won"]
+        rrate = percent(rwins/rgames)
+        rscore = round(100*player["r"]["score"]/rgames)/100
 
-player_stats = gen_user_stats(sheets)
+        #Statistics for Contra
+        cgames = player["c"]["played"]
+        cwins = player["c"]["won"]
+        crate = percent(cwins/cgames)
+        cscore = round(100*player["c"]["score"]/cgames)/100
 
-player_list = ["D", "A", "M", "P"]
+        #Statistics for Overall
+        total_games = player_statistics["total"] # Total counted, valid games
+        total_wins = rwins + cwins
+        total_rate = percent(total_wins / total_games)
 
-for user in player_list:
-    player_stat = player_stats[user]
+        print(f"""Win Percentage for {user} (Rounds):
+        Re:\t\t{rrate}% ({rwins} of {rgames})
+        Contra:\t{crate}% ({cwins} of {cgames})
+        Total:\t{total_rate}% ({total_wins} of {total_games})
 
-    #Statistics for Re
-    rgames = player_stat["r"]["played"]
-    rwins = player_stat["r"]["won"]
-    rrate = percent(rwins/rgames)
-    rscore = round(100*player_stat["r"]["score"]/rgames)/100
+        Average Scores:
+        Re:\t\t{rscore}
+        Contra:\t{cscore}
+        """)
 
-    #Statistics for Contra
-    cgames = player_stat["c"]["played"]
-    cwins = player_stat["c"]["won"]
-    crate = percent(cwins/cgames)
-    cscore = round(100*player_stat["c"]["score"]/cgames)/100
+    player_win_percentage = win_percentage(sheets)
 
-    #Statistics for Overall
-    total_games = player_stats["total"] # Total counted, valid games
-    total_wins = rwins + cwins
-    total_rate = percent(total_wins / total_games)
-
-    print(f"""Win Percentage for {user} (Rounds):
-    Re:\t\t{rrate}% ({rwins} of {rgames})
-    Contra:\t{crate}% ({cwins} of {cgames})
-    Total:\t{total_rate}% ({total_wins} of {total_games})
-
-    Average Scores:
-    Re:\t\t{rscore}
-    Contra:\t{cscore}
+    print(f"""Win Percentage over all games:
+        D: {percent(player_win_percentage["D"])}%
+        A: {percent(player_win_percentage["A"])}%
+        M: {percent(player_win_percentage["M"])}%
+        P: {percent(player_win_percentage["P"])}%
     """)
+    return
 
-win_percentage = win_percentage(sheets)
-
-print(f"""Win Percentage over all games:
-    D: {percent(win_percentage["D"])}%
-    A: {percent(win_percentage["A"])}%
-    M: {percent(win_percentage["M"])}%
-    P: {percent(win_percentage["P"])}%
-""")
-
-    #Full stats: {player_stat}
-#print(f"Total Games: {player_stats['Total']}")
+main()

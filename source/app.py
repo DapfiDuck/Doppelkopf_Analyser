@@ -1,7 +1,12 @@
 from csv_reader import get_sheet as get
 from user_stats import gen_user_stats
 from user_stats import get_win_percentage_for_game as win_percentage
+from matplotinterface import plot_command as run_interface
+from matplotinterface import load_data as stage_interface
 import game_stats
+
+
+player_list = ["D", "A", "M", "P"]
 
 sheet_nr = int(input("Sheets: "))
 sheets = []
@@ -12,8 +17,17 @@ def main():
     for number in range(1, sheet_nr+1):
         sheets.append(get(f"./data/Game{number}.csv"))
 
-    print_game_stats();
-    print_player_stats();
+
+    print("\n|"+"-"*40+"|\n")
+    game_statistics = game_stats.generate_game_stats(sheets)
+    print_game_stats(game_statistics)
+
+    player_statistics = gen_user_stats(sheets)
+    print_player_stats(player_statistics)
+
+    print("\n|"+"-"*40+"|\n")
+    stage_interface(game_statistics, player_statistics, sheets, player_list)
+    run_interface()
 
     return
 
@@ -22,9 +36,8 @@ def percent(float, decimals = 1):
     return round(float * (10 ** (decimals+2)))/(10**decimals)
 
 
-def print_game_stats():
+def print_game_stats(game_statistics):
 
-    game_statistics = game_stats.generate_game_stats(sheets)
     wins = game_statistics[0]
     games = game_statistics[1]
 
@@ -33,16 +46,12 @@ def print_game_stats():
     ties = percent(wins[2]/games)
 
     #print("\nStatistics: ")
-    print("\n|"+"-"*40+"|\n")
     print(f"Re: {re}%, Contra: {contra}%, Ties: {ties}%")
     print("\n")
     return
 
 
-def print_player_stats():
-    player_statistics = gen_user_stats(sheets)
-
-    player_list = ["D", "A", "M", "P"]
+def print_player_stats(player_statistics):
 
     for user in player_list:
         player = player_statistics[user]
@@ -76,7 +85,7 @@ def print_player_stats():
 
     player_win_percentage = win_percentage(sheets)
 
-    print(f"""Win Percentage over all games:
+    print(f"""Win Percentage over sheets:
         D: {percent(player_win_percentage["D"])}%
         A: {percent(player_win_percentage["A"])}%
         M: {percent(player_win_percentage["M"])}%

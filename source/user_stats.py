@@ -5,16 +5,16 @@ other_party = {
     "c":"r"
 }
 
+player_list = ['D', 'A', 'M', 'P']
+
 def get_win_percentage_for_game(sheets):
 
     games = 0
 
-    win_percentage = {
-        "D":0,
-        "A":0,
-        "M":0,
-        "P":0
-    }
+    win_percentage = {}
+    for player in player_list:
+        win_percentage[player] = 0
+
 
     for sheet in sheets:
         players = sheet[0]
@@ -36,29 +36,17 @@ def get_win_percentage_for_game(sheets):
 
 def gen_user_stats(sheets):
 
-    games = {
-        "D" : {
-            "r": {"played":0, "won":0, "score":0},
-            "c": {"played":0, "won":0, "score":0},
-            "prev": 0
-        },
-        "A" : {
-            "r": {"played":0, "won":0, "score":0},
-            "c": {"played":0, "won":0, "score":0},
-            "prev": 0
-        },
-        "M" : {
-            "r": {"played":0, "won":0, "score":0},
-            "c": {"played":0, "won":0, "score":0},
-            "prev": 0
-        },
-        "P" : {
-            "r": {"played":0, "won":0, "score":0},
-            "c": {"played":0, "won":0, "score":0},
-            "prev": 0
-            },
-        "total": 0
-    }
+    games = {}
+
+    for player in player_list:
+        games[player] = {
+                "r": {"played":0, "won":0, "score":0},
+                "c": {"played":0, "won":0, "score":0},
+                "prev": 0
+            }
+
+    games["total"] = 0
+
     # For every player define for each party [played, won, score] and previous
     # And define Total Games
 

@@ -1,6 +1,6 @@
 def generate_game_stats(sheets):
     games = 0
-    wins = [0, 0, 0] #Reh, Contra, Tie
+    wins = [0, 0, 0] #Re, Contra, Tie
 
     for sheet in sheets:
         for row_int in range(1, len(sheet)):

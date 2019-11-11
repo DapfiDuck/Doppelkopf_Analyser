@@ -74,23 +74,21 @@ def print_player_stats(player_statistics):
         total_rate = percent(total_wins / total_games)
 
         print(f"""Win Percentage for {user} (Rounds):
-        Re:\t\t{rrate}% ({rwins} of {rgames})
+        Re:\t{rrate}% ({rwins} of {rgames})
         Contra:\t{crate}% ({cwins} of {cgames})
         Total:\t{total_rate}% ({total_wins} of {total_games})
 
         Average Scores:
-        Re:\t\t{rscore}
+        Re:\t{rscore}
         Contra:\t{cscore}
         """)
 
     player_win_percentage = win_percentage(sheets)
 
-    print(f"""Win Percentage over sheets:
-        D: {percent(player_win_percentage["D"])}%
-        A: {percent(player_win_percentage["A"])}%
-        M: {percent(player_win_percentage["M"])}%
-        P: {percent(player_win_percentage["P"])}%
-    """)
+    print("Win Percentage over all sheets:")
+    for player in player_list:
+        print(f"{player}: {percent(player_win_percentage[player])}")
+
     return
 
 main()

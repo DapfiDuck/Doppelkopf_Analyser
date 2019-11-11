@@ -2,29 +2,34 @@ from matplotlib import pyplot as plt
 from game_stats import generate_game_stats as generate
 
 help_msg = """
-help        - show help message
-exit        - close program
-plot game   - plot game statistics as pie chart
-plot player - plot player data.
-              Parameters: Player Name
+help        - Show help message
+exit        - Close program
+plot game   - Plot game statistics as pie chart
+plot player - Plot player data.
+              Parameters: [Player]
+plot dev    - Plot development of a players win percentage over the sheets
+              Parameters: [Player]
 generate    - Generate and display a subset of the data.
-              Parameters: First Sheet, Last Sheet
+              Parameters: [First Sheet] [Last Sheet]
 list        - Lists players.
 """
 
 def percent(float, decimals = 1):
     return round(float * (10 ** (decimals+2)))/(10**decimals)
 
-def load_data(game, player, all_sheets, player_list):
+def load_data(game, player_data, all_sheets, player_list):
 
     global gamedata, playerdata, sheets, players
 
     gamedata = game
-    playerdata = player
+    playerdata = player_data
     sheets = all_sheets
     players = player_list
 
 def plot_command():
+
+    print("Starting console. Type \"help\" for help")
+
     while True:
         command = input("DKA > ").split(" ")
 
@@ -38,7 +43,7 @@ def plot_command():
             cmd_plot(command)
         elif command[0] == "generate" or command[0] == "gen":
             if(len(command)<3):
-                print("Insufficient Parameters\nUsage: generate start end")
+                print("Insufficient Parameters\nUsage: generate [start] [end]")
             else:
                 genstart = int(command[1])
                 genend = int(command[2])
@@ -50,12 +55,12 @@ def cmd_plot(command):
     if(len(command) == 1):
         return
 
-    if(command[1] == "game"):
+    if command[1] == "game":
         plot_game(gamedata[0])
     elif command[1] == "player":
 
         if(len(command) < 3):
-            print("Insufficient Parameters\nUsage: plot player [player short name]")
+            print("Insufficient Parameters\nUsage: plot player [player]")
             return
 
         if(not command[2] in players):
@@ -64,8 +69,45 @@ def cmd_plot(command):
         else:
             print("Player found")
 
+
         data = playerdata[command[2]]
         plot_player(data, command[2])
+
+
+    elif command[1] == "dev" or "development":
+
+        if(len(command) < 3):
+            print("Insufficient Parameters\nUsage: plot development [player]")
+            return
+
+        if(not command[2] in players):
+            print("Player not found. Check Players with \"list\"")
+            return
+        else:
+            print("Player found")
+
+        plot_development(command[2])
+
+
+def plot_development(player):
+
+    x = []
+    y = []
+
+    raw_data = playerdata[player]["sheet_stats"]
+
+    count_x = 1
+    for data_point in raw_data:
+        x.append(count_x)
+        y.append(data_point[0]/data_point[1])
+
+        count_x += 1
+
+    plt.plot(x, y)
+
+    plt.title(f"Win Percentage Development For {player}")
+    plt.show()
+
 
 def plot_player(stats, player):
 

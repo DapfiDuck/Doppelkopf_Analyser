@@ -37,7 +37,9 @@ Aufzeichnung und Überagung von Daten in das Computer-System sind sehr fehleranf
 
 Dazu wird ein Datensatz als Fehlerhaft angesehen, wenn:
 - Die Quersumme aller Spieler ungleich 0 ist
-- Nicht 2 Spieler Punkte gewinnen und 2 verlieren, ohne d
+- Nicht 2 Spieler Punkte gewinnen und 2 verlieren, ohne dass ein Solo angegeben ist und das Spiel einen Wert über 0 hat
+- Game counters of players and global counter don't match.
+- 
 
 ## Auswertung der Spieler-Statistiken
 Zunächst wird die Datenstruktur definiert, in der die Spielerstatistiken notiert werden. Hierfür can in Python ein Dictionary verwendet werden:
@@ -79,7 +81,7 @@ Hat der Spieler die jeweilige Runde gewonnen, so wird auf seine Gewinnrunden und
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTkzMzM1Nzk5MCwtMTI3MjE1OTUsLTEwMz
+eyJoaXN0b3J5IjpbMTU4NDI2NjcxNCwtMTI3MjE1OTUsLTEwMz
 M1NjU0NDcsLTE3ODEyNzc1NjUsNzY1MDEwMTk3LDE1MTY2NTMx
 MDddfQ==
 -->

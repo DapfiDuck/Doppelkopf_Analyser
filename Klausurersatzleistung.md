@@ -32,6 +32,9 @@ $$
 f_{Partei} = \frac{w_{Partei}}{p_{Partei}}
 $$
 
+## Bereinigung der Daten
+Aufzeichnung und Überagung von Daten in das Computer-System sind sehr fehleranfällig. Deshalb muss jedes Spiel vor der Verarbeitung überprüft werden.
+
 ## Auswertung der Spieler-Statistiken
 Zunächst wird die Datenstruktur definiert, in der die Spielerstatistiken notiert werden. Hierfür can in Python ein Dictionary verwendet werden:
 ```
@@ -72,6 +75,6 @@ Hat der Spieler die jeweilige Runde gewonnen, so wird auf seine Gewinnrunden und
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEwMzM1NjU0NDcsLTE3ODEyNzc1NjUsNz
-Y1MDEwMTk3LDE1MTY2NTMxMDddfQ==
+eyJoaXN0b3J5IjpbLTEyNzIxNTk1LC0xMDMzNTY1NDQ3LC0xNz
+gxMjc3NTY1LDc2NTAxMDE5NywxNTE2NjUzMTA3XX0=
 -->

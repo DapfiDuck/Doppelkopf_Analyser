@@ -3,3 +3,4 @@ Write an analysis for each player in the game of Doppelkopf accross multiple she
 
 ## Dependencies
 - matplotlib
+```pip install matplotlib```

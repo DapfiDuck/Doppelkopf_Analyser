@@ -8,7 +8,7 @@ plot game   - Plot game statistics as pie chart
 plot player - Plot player data.
               Parameters: [Player]
 plot dev    - Plot development of a players win percentage over the sheets
-              Parameters: [Player]
+              Parameters: [Player] or \"-all\"
 generate    - Generate and display a subset of the data.
               Parameters: [First Sheet] [Last Sheet]
 list        - Lists players.
@@ -32,6 +32,7 @@ def plot_command():
 
     while True:
         command = input("DKA > ").split(" ")
+        print(command)
 
         if command[0] == "exit":
             exit()
@@ -80,13 +81,15 @@ def cmd_plot(command):
             print("Insufficient Parameters\nUsage: plot development [player]")
             return
 
-        if(not command[2] in players):
+        if(command[2] == "-all"):
+            print("Plotting All")
+            plot_all_developments()
+        elif(not command[2] in players):
             print("Player not found. Check Players with \"list\"")
             return
         else:
             print("Player found")
-
-        plot_development(command[2])
+            plot_development(command[2])
 
 
 def plot_development(player):
@@ -104,10 +107,41 @@ def plot_development(player):
         count_x += 1
 
     plt.plot(x, y)
+    plt.xlabel("Sheet")
+    plt.ylabel("Win Percentage")
 
     plt.title(f"Win Percentage Development For {player}")
     plt.show()
 
+def plot_all_developments():
+
+    x = []
+
+    length = len(playerdata[players[0]]["sheet_stats"])
+    x = range(length)
+
+    for player in players:
+        y = []
+        raw_data = playerdata[player]["sheet_stats"]
+
+        count_x = 1
+        for data_point in raw_data:
+            y.append(data_point[0]/data_point[1])
+
+            count_x += 1
+
+        plt.plot(x, y, label=player)
+
+
+    plt.xlabel("Sheet")
+    plt.ylabel("Win Percentage")
+    
+    plt.title("Development of all players")
+    plt.legend()
+    plt.show()
+
+
+    pass
 
 def plot_player(stats, player):
 

@@ -118,8 +118,13 @@ def cmd_plot(command):
             print("Plotting All")
             plot_all_developments()
         elif(not command[2] in players):
-            print("Player not found. Check Players with \"list\"")
-            return
+
+            if(command[2] in alias):
+                print("Alias Found")
+                plot_development(alias[command[2]])
+            else:
+                print("Player not found. Check Players with \"list\"")
+                return
         else:
             print("Player found")
             plot_development(command[2])

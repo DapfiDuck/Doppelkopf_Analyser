@@ -25,6 +25,7 @@ Also you must adjust the corresponding list of expected player names in the app.
 ```
 
 Currently the script is expecting the players D, A, M, and P at the top of each sheet. You can adjust that to your player-names. The dataset must be consistent in this.
+The Player names do not have to be in order.
 
 ## Functions
 - Calculating and plotting of game statistics (Win probability for each team)

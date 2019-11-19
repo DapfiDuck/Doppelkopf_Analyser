@@ -38,7 +38,9 @@ def plot_command():
         elif command[0] == "help":
             print(help_msg)
         elif command[0] == "list":
-            print(players)
+            print("Players In List:")
+            for player in players:
+                print("- "+player)
         elif command[0] == "plot":
             cmd_plot(command)
         elif command[0] == "generate" or command[0] == "gen":

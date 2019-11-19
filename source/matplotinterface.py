@@ -14,6 +14,8 @@ generate    - Generate and display a subset of the data.
 list        - Lists players.
 """
 
+alias = {}
+
 def percent(float, decimals = 1):
     return round(float * (10 ** (decimals+2)))/(10**decimals)
 
@@ -38,9 +40,16 @@ def plot_command():
         elif command[0] == "help":
             print(help_msg)
         elif command[0] == "list":
-            print("Players In List:")
+            print("--Players--")
             for player in players:
-                print("- "+player)
+                print(player, end=", ")
+
+            print("\n\n--Aliases--")
+            for name in alias:
+                print(name+": "+alias[name])
+
+        elif command[0] == "alias":
+            add_alias(command)
         elif command[0] == "plot":
             cmd_plot(command)
         elif command[0] == "generate" or command[0] == "gen":
@@ -52,6 +61,16 @@ def plot_command():
                 generate_subset(genstart, genend)
     return
 
+
+def add_alias(command):
+    if(not len(command) >= 3):
+        print("Insufficient Parameters\nUsage: alias [player] [alias]")
+    elif(not command[1] in players):
+        print("Player not found. Check Players with \"list\"")
+    else:
+        alias[command[2]] = command[1]
+        print(f"Added Alias {alias[command[2]]}: {command[2]}")
+
 def cmd_plot(command):
 
     if(len(command) == 1):
@@ -61,19 +80,28 @@ def cmd_plot(command):
         plot_game(gamedata[0])
     elif command[1] == "player":
 
+        player = ""
+
         if(len(command) < 3):
             print("Insufficient Parameters\nUsage: plot player [player]")
             return
 
         if(not command[2] in players):
-            print("Player not found. Check Players with \"list\"")
-            return
+
+            if(command[2] in alias):
+                print("Alias Found")
+                player = alias[command[2]]
+            else:
+                print("Player not found. Check Players with \"list\"")
+                return
+
         else:
             print("Player found")
+            player = command[2]
 
 
-        data = playerdata[command[2]]
-        plot_player(data, command[2])
+        data = playerdata[player]
+        plot_player(data, player)
 
 
     elif command[1] == "dev" or "development":

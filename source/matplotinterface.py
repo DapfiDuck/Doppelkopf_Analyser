@@ -40,27 +40,23 @@ def plot_command():
         elif command[0] == "help":
             print(help_msg)
         elif command[0] == "list":
-            print("--Players--")
-            for player in players:
-                print(player, end=", ")
-
-            print("\n\n--Aliases--")
-            for name in alias:
-                print(name+": "+alias[name])
-
+            list()
         elif command[0] == "alias":
             add_alias(command)
         elif command[0] == "plot":
             cmd_plot(command)
         elif command[0] == "generate" or command[0] == "gen":
-            if(len(command)<3):
-                print("Insufficient Parameters\nUsage: generate [start] [end]")
-            else:
-                genstart = int(command[1])
-                genend = int(command[2])
-                generate_subset(genstart, genend)
+            cmd_generate(command)
     return
 
+def list():
+    print("--Players--")
+    for player in players:
+        print(player, end=", ")
+
+    print("\n\n--Aliases--")
+    for name in alias:
+        print(name+": "+alias[name])
 
 def add_alias(command):
     if(not len(command) >= 3):
@@ -70,6 +66,14 @@ def add_alias(command):
     else:
         alias[command[2]] = command[1]
         print(f"Added Alias {alias[command[2]]}: {command[2]}")
+
+def cmd_generate(command):
+    if(len(command)<3):
+        print("Insufficient Parameters\nUsage: generate [start] [end]")
+    else:
+        genstart = int(command[1])
+        genend = int(command[2])
+        generate_subset(genstart, genend)
 
 def cmd_plot(command):
 

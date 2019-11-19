@@ -12,6 +12,8 @@ plot dev    - Plot development of a players win percentage over the sheets
 generate    - Generate and display a subset of the data.
               Parameters: [First Sheet] [Last Sheet]
 list        - Lists players.
+Alias       - Defines an alias for a player
+              Parameters: [player] [alias]
 """
 
 alias = {}

@@ -32,7 +32,6 @@ def plot_command():
 
     while True:
         command = input("DKA > ").split(" ")
-        print(command)
 
         if command[0] == "exit":
             exit()
@@ -135,7 +134,7 @@ def plot_all_developments():
 
     plt.xlabel("Sheet")
     plt.ylabel("Win Percentage")
-    
+
     plt.title("Development of all players")
     plt.legend()
     plt.show()

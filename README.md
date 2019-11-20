@@ -1,7 +1,7 @@
 # Doppelkopf Analyser
 Write an analysis for each player in the game of Doppelkopf accross multiple sheets.
 
-[GitHub Pages](DapfiDuck.github.io/Doppelkopf_Analyser)
+[GitHub Pages](http://DapfiDuck.github.io/Doppelkopf_Analyser)
 
 ## Requirements
 - Python 3.8

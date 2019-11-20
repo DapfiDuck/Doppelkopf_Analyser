@@ -34,3 +34,5 @@ The Player names do not have to be in order.
   - Average Score per party
   - Average win-probability at the end of sheet
 - Generation of game statistics
+
+[Documentation (German)](./documentation/Klausurersatzleistung.html)

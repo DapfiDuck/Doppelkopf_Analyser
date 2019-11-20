@@ -1,6 +1,8 @@
 # Doppelkopf Analyser
 Write an analysis for each player in the game of Doppelkopf accross multiple sheets.
 
+[GitHub Pages](DapfiDuck.github.io/Doppelkopf_Analyser)
+
 ## Requirements
 - Python 3.8
 - matplotlib ```pip install matplotlib```

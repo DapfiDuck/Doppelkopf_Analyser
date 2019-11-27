@@ -8,7 +8,7 @@ Write an analysis for each player in the game of Doppelkopf accross multiple she
 - matplotlib ```pip install matplotlib```
 
 ## License
-This project is licensed under the GNU MIT License - see the LICENSE file for details
+This project is licensed under the MIT License - see the LICENSE file for details
 
 ## How to add your own files
  Sheets are to be placed into the ``data`` folder in a csv format.

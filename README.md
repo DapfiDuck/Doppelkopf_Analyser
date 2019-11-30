@@ -15,7 +15,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
  |Player 1|Player 2|Player 3|Player 4|Game|
  |--------|--------|--------|--------|----|
- |Values P1|Values P2|Values P3|Values P|Values Game|
+ |Values P1|Values P2|Values P3|Values P4|Values Game|
  |...|...|...|...|...|
 
  The filename must follow the following format:

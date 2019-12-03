@@ -42,6 +42,7 @@ def gen_user_stats(sheets):
         games[player] = {
                 "r": {"played":0, "won":0, "score":0},
                 "c": {"played":0, "won":0, "score":0},
+                "sheet_stats":[],
                 "prev": 0
             }
 
@@ -54,6 +55,10 @@ def gen_user_stats(sheets):
     sheet_nr = 0
 
     for sheet in sheets:
+
+        #Add Sheet to statistics over sheets [won, played]
+        for player in player_list:
+            games[player]["sheet_stats"].append([0, 0])
 
         sheet_nr += 1
         reset_previous(games)
@@ -103,12 +108,18 @@ def gen_user_stats(sheets):
                 previous_round = games[current_player]["prev"] # Score after previous round -> Example games["D"][p]
                 score = int(row[cell])
 
+                games[current_player] ["sheet_stats"] [-1] [1] += 1
+
                 if score > previous_round:
 
                     # if score for player increased, add 1 to winning party's wins
                     games[current_player] [winning_party] ["won"] += 1
                     games[current_player] [winning_party] ["played"] += 1
                     games[current_player] [winning_party] ["score"] += abs(game_score) #Count up winning points
+
+                    #Count Sheet Specific Stats
+                    games[current_player] ["sheet_stats"] [-1] [0] += 1
+
                     total_wins += 1
                 elif score < previous_round:
                     games[current_player] [loosing_party] ["played"] += 1

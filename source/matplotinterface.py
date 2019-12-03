@@ -2,29 +2,38 @@ from matplotlib import pyplot as plt
 from game_stats import generate_game_stats as generate
 
 help_msg = """
-help        - show help message
-exit        - close program
-plot game   - plot game statistics as pie chart
-plot player - plot player data.
-              Parameters: Player Name
+help        - Show help message
+exit        - Close program
+plot game   - Plot game statistics as pie chart
+plot player - Plot player data.
+              Parameters: [Player]
+plot dev    - Plot development of a players win percentage over the sheets
+              Parameters: [Player] or \"-all\"
 generate    - Generate and display a subset of the data.
-              Parameters: First Sheet, Last Sheet
+              Parameters: [First Sheet] [Last Sheet]
 list        - Lists players.
+Alias       - Defines an alias for a player
+              Parameters: [player] [alias]
 """
+
+alias = {}
 
 def percent(float, decimals = 1):
     return round(float * (10 ** (decimals+2)))/(10**decimals)
 
-def load_data(game, player, all_sheets, player_list):
+def load_data(game, player_data, all_sheets, player_list):
 
     global gamedata, playerdata, sheets, players
 
     gamedata = game
-    playerdata = player
+    playerdata = player_data
     sheets = all_sheets
     players = player_list
 
 def plot_command():
+
+    print("Starting console. Type \"help\" for help")
+
     while True:
         command = input("DKA > ").split(" ")
 
@@ -33,39 +42,146 @@ def plot_command():
         elif command[0] == "help":
             print(help_msg)
         elif command[0] == "list":
-            print(players)
+            list()
+        elif command[0] == "alias":
+            add_alias(command)
         elif command[0] == "plot":
             cmd_plot(command)
         elif command[0] == "generate" or command[0] == "gen":
-            if(len(command)<3):
-                print("Insufficient Parameters\nUsage: generate start end")
-            else:
-                genstart = int(command[1])
-                genend = int(command[2])
-                generate_subset(genstart, genend)
+            cmd_generate(command)
     return
+
+def list():
+    print("--Players--")
+    for player in players:
+        print(player, end=", ")
+
+    print("\n\n--Aliases--")
+    for name in alias:
+        print(name+": "+alias[name])
+
+def add_alias(command):
+    if(not len(command) >= 3):
+        print("Insufficient Parameters\nUsage: alias [player] [alias]")
+    elif(not command[1] in players):
+        print("Player not found. Check Players with \"list\"")
+    else:
+        alias[command[2]] = command[1]
+        print(f"Added Alias {alias[command[2]]}: {command[2]}")
+
+def cmd_generate(command):
+    if(len(command)<3):
+        print("Insufficient Parameters\nUsage: generate [start] [end]")
+    else:
+        genstart = int(command[1])
+        genend = int(command[2])
+        generate_subset(genstart, genend)
 
 def cmd_plot(command):
 
     if(len(command) == 1):
         return
 
-    if(command[1] == "game"):
+    if command[1] == "game":
         plot_game(gamedata[0])
     elif command[1] == "player":
 
+        player = ""
+
         if(len(command) < 3):
-            print("Insufficient Parameters\nUsage: plot player [player short name]")
+            print("Insufficient Parameters\nUsage: plot player [player]")
             return
 
         if(not command[2] in players):
-            print("Player not found. Check Players with \"list\"")
-            return
+
+            if(command[2] in alias):
+                print("Alias Found")
+                player = alias[command[2]]
+            else:
+                print("Player not found. Check Players with \"list\"")
+                return
+
         else:
             print("Player found")
+            player = command[2]
 
-        data = playerdata[command[2]]
-        plot_player(data, command[2])
+
+        data = playerdata[player]
+        plot_player(data, player)
+
+
+    elif command[1] == "dev" or "development":
+
+        if(len(command) < 3):
+            print("Insufficient Parameters\nUsage: plot development [player]")
+            return
+
+        if(command[2] == "-all"):
+            print("Plotting All")
+            plot_all_developments()
+        elif(not command[2] in players):
+
+            if(command[2] in alias):
+                print("Alias Found")
+                plot_development(alias[command[2]])
+            else:
+                print("Player not found. Check Players with \"list\"")
+                return
+        else:
+            print("Player found")
+            plot_development(command[2])
+
+
+def plot_development(player):
+
+    x = []
+    y = []
+
+    raw_data = playerdata[player]["sheet_stats"]
+
+    count_x = 1
+    for data_point in raw_data:
+        x.append(count_x)
+        y.append(data_point[0]/data_point[1])
+
+        count_x += 1
+
+    plt.plot(x, y)
+    plt.xlabel("Sheet")
+    plt.ylabel("Win Percentage")
+
+    plt.title(f"Win Percentage Development For {player}")
+    plt.show()
+
+def plot_all_developments():
+
+    x = []
+
+    length = len(playerdata[players[0]]["sheet_stats"])
+    x = range(length)
+
+    for player in players:
+        y = []
+        raw_data = playerdata[player]["sheet_stats"]
+
+        count_x = 1
+        for data_point in raw_data:
+            y.append(data_point[0]/data_point[1])
+
+            count_x += 1
+
+        plt.plot(x, y, label=player)
+
+
+    plt.xlabel("Sheet")
+    plt.ylabel("Win Percentage")
+
+    plt.title("Development of all players")
+    plt.legend()
+    plt.show()
+
+
+    pass
 
 def plot_player(stats, player):
 

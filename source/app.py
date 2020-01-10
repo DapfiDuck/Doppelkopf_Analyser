@@ -1,4 +1,4 @@
-from csv_reader import get_sheet as get
+from csvloader import load_sheet as get
 from user_stats import gen_user_stats
 from user_stats import get_win_percentage_for_game as win_percentage
 from matplotinterface import plot_command as run_interface
@@ -94,6 +94,6 @@ def print_player_stats(player_statistics):
 
     return
 
-    
+
 if __name__ == '__main__':
     main()

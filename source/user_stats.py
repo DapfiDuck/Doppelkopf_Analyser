@@ -11,6 +11,7 @@ def get_win_percentage_for_game(sheets):
 
     games = 0
 
+    #Initialize win percentage
     win_percentage = {}
     for player in player_list:
         win_percentage[player] = 0
@@ -24,11 +25,12 @@ def get_win_percentage_for_game(sheets):
             current_player = players[cell_nr]
 
             if int(final_row[cell_nr]) > 0:
-                win_percentage[current_player] +=1
+                win_percentage[current_player] +=1 #Count number of wins
 
         games += 1
 
 
+    #At the end, divide number of wins through the number of games for each player.
     for player in win_percentage:
         win_percentage[player] /= games
 

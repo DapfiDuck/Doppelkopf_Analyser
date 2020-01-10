@@ -1,7 +1,7 @@
 # Doppelkopf Analyser
 Write an analysis for each player in the game of Doppelkopf accross multiple sheets.
 
-[GitHub Pages](http://DapfiDuck.github.io/Doppelkopf_Analyser)
+[GitHub Pages](http://davidkowalk.github.io/Doppelkopf_Analyser)
 
 ## Requirements
 - Python 3.8
@@ -39,4 +39,4 @@ The Player names do not have to be in order.
   - Average win-probability at the end of sheet
 - Generation of game statistics
 
-[Documentation (German)](./documentation/Klausurersatzleistung.html)
+[Documentation (German)](http://davidkowalk.github.io/Doppelkopf_Analyser/documentation/Klausurersatzleistung)

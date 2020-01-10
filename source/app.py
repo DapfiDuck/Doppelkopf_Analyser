@@ -94,4 +94,6 @@ def print_player_stats(player_statistics):
 
     return
 
-main()
+    
+if __name__ == '__main__':
+    main()

@@ -18,13 +18,16 @@ def main():
         sheets.append(get(f"./data/Game{number}.csv"))
 
 
+    # Get Game Stats
     print("\n|"+"-"*40+"|\n")
     game_statistics = game_stats.generate_game_stats(sheets)
     print_game_stats(game_statistics)
 
+    # Generate Player Stats
     player_statistics = gen_user_stats(sheets)
     print_player_stats(player_statistics)
 
+    # Open Console
     print("\n|"+"-"*40+"|\n")
     stage_interface(game_statistics, player_statistics, sheets, player_list)
     run_interface()

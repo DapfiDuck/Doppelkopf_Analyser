@@ -1,6 +1,6 @@
 from csv_reader import get_sheet as get
 
-other_party = {
+swap_party = {
     "r":"c",
     "c":"r"
 }
@@ -87,6 +87,7 @@ def gen_user_stats(sheets):
             games["total"] += 1
 
 
+            #Determine Winning Party
             if game_score >= 1:
                 winning_party = "r"
             elif game_score <= -1:
@@ -94,14 +95,14 @@ def gen_user_stats(sheets):
             else:
                 continue
 
-            loosing_party = other_party[winning_party]
+            loosing_party = swap_party[winning_party]
 
             for cell in range(0, 4):
 
                 # For player of any given round:
                 # 1. Load score from this and the previous round
-                # 2. Count a win in the winning party
-                # 3. Count participation in both parties
+                # 2. Count a win if in the winning party
+                # 3. Count participation in played parties
                 # 4. Check sum and winner count
 
                 current_player = player[cell]

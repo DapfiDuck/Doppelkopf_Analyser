@@ -1,4 +1,4 @@
-from csv_loader import load_sheet as get
+from csvloader import load_sheet as get
 
 swap_party = {
     "r":"c",

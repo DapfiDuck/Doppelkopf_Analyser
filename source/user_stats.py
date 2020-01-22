@@ -1,4 +1,7 @@
 from csvloader import load_sheet as get
+from math import sqrt
+from math import floor
+from math import ceil
 
 swap_party = {
     "r":"c",
@@ -142,6 +145,21 @@ def gen_user_stats(sheets):
                 exit()
 
     return games
+
+def append_significant_interval(games, p):
+    for player in player_list:
+
+        # Re
+        n = games[player]["r"]["played"]
+        my = p["r"]*n
+        sigma = sqrt(my*(1-p["r"]))
+        games[player]["r"]["interval"] = (floor(my-1.96*sigma), ceil(my+1.96*sigma))
+
+        # Contra
+        n = games[player]["c"]["played"]
+        my = p["c"]*n
+        sigma = sqrt(my*(1-p["c"]))
+        games[player]["c"]["interval"] = (floor(my-1.96*sigma), ceil(my+1.96*sigma))
 
 
 def reset_previous(games):

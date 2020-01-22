@@ -1,6 +1,7 @@
 from csvloader import load_sheet as get
 from user_stats import gen_user_stats
 from user_stats import get_win_percentage_for_game as win_percentage
+from user_stats import append_significant_interval
 from matplotinterface import plot_command as run_interface
 from matplotinterface import load_data as stage_interface
 import game_stats
@@ -22,9 +23,15 @@ def main():
     print("\n|"+"-"*40+"|\n")
     game_statistics = game_stats.generate_game_stats(sheets)
     print_game_stats(game_statistics)
+    games = game_statistics[1]
+    p = {}
+    p["r"] = game_statistics[0][0]/games
+    p["c"] = game_statistics[0][1]/games
 
     # Generate Player Stats
     player_statistics = gen_user_stats(sheets)
+    append_significant_interval(player_statistics, p)
+
     print_player_stats(player_statistics)
 
     # Open Console
@@ -77,8 +84,8 @@ def print_player_stats(player_statistics):
         total_rate = percent(total_wins / total_games)
 
         print(f"""Win Percentage for {user} (Rounds):
-        Re:\t{rrate}% ({rwins} of {rgames})
-        Contra:\t{crate}% ({cwins} of {cgames})
+        Re:\t{rrate}% ({rwins} of {rgames}), {player["r"]["interval"]}
+        Contra:\t{crate}% ({cwins} of {cgames}), {player["c"]["interval"]}
         Total:\t{total_rate}% ({total_wins} of {total_games})
 
         Average Scores:

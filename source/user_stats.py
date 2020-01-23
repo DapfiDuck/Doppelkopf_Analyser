@@ -163,6 +163,26 @@ def append_significant_interval(games, p):
         games[player]["c"]["interval"] = (floor(my-1.96*sigma), ceil(my+1.96*sigma))
 
 
+from probability_engine import radius
+def append_significant_interval_custom(games, p, significance):
+    p_rad = 1-significance
+
+    for player in player_list:
+        # Re
+        n = games[player]["r"]["played"]
+        my = p["r"]*n
+        sigma = sqrt(my*(1-p["r"]))
+        my_rad = radius(p_rad, sigma)
+        games[player]["r"]["interval"] = (floor(my-my_rad), ceil(my+my_rad))
+
+        # Contra
+        n = games[player]["c"]["played"]
+        my = p["c"]*n
+        sigma = sqrt(my*(1-p["c"]))
+        my_rad = radius(p_rad, sigma)
+        games[player]["c"]["interval"] = (floor(my-my_rad), ceil(my+my_rad))
+
+
 def reset_previous(games):
     players = ["D", "A", "M", "P"]
 

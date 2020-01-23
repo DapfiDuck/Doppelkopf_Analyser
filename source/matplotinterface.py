@@ -1,19 +1,23 @@
 from matplotlib import pyplot as plt
 from game_stats import generate_game_stats as generate
+from user_stats import append_significant_interval_custom as custom_sig
 
 help_msg = """
-help        - Show help message
-exit        - Close program
-plot game   - Plot game statistics as pie chart
-plot player - Plot player data.
-              Parameters: [Player]
-plot dev    - Plot development of a players win percentage over the sheets
-              Parameters: [Player] or \"-all\"
-generate    - Generate and display a subset of the data.
-              Parameters: [First Sheet] [Last Sheet]
-list        - Lists players.
-alias       - Defines an alias for a player
-              Parameters: [player] [alias]
+help         - Show help message
+exit         - Close program
+plot game    - Plot game statistics as pie chart
+plot player  - Plot player data.
+               Parameters: [Player]
+plot dev     - Plot development of a players win percentage over the sheets
+               Parameters: [Player] or \"-all\"
+generate     - Generate and display a subset of the data.
+               Parameters: [First Sheet] [Last Sheet]
+significance - Prints the player statistics with a user-defined improbability
+               Parameters: [α<x]
+               Alias: sig [α<x]
+list         - Lists players.
+alias        - Defines an alias for a player
+               Parameters: [player] [alias]
 """
 
 alias = {}
@@ -21,14 +25,15 @@ alias = {}
 def percent(float, decimals = 1):
     return round(float * (10 ** (decimals+2)))/(10**decimals)
 
-def load_data(game, player_data, all_sheets, player_list):
+def load_data(game, player_data, all_sheets, player_list, party_prob):
 
-    global gamedata, playerdata, sheets, players
+    global gamedata, playerdata, sheets, players, p
 
     gamedata = game
     playerdata = player_data
     sheets = all_sheets
     players = player_list
+    p = party_prob
 
 def plot_command():
 
@@ -49,6 +54,8 @@ def plot_command():
             cmd_plot(command)
         elif command[0] == "generate" or command[0] == "gen":
             cmd_generate(command)
+        elif command[0] == "significance" or "sig":
+            print_custom_sig(command)
     return
 
 def list():
@@ -116,7 +123,7 @@ def cmd_plot(command):
             print("Insufficient Parameters\nUsage: plot development [player]")
             return
 
-        if(command[2] == "-all"):
+        if(command[2] == "-all" or "all"):
             print("Plotting All")
             plot_all_developments()
         elif(not command[2] in players):
@@ -225,3 +232,46 @@ def generate_subset(start, end):
     print(f"Re: {re}%, Contra: {contra}%, Ties: {ties}%")
 
     plot_game(sheet_statistics[0])
+
+
+def print_custom_sig(command):
+    p_rad = float(command[1])
+    custom_sig(playerdata, p, p_rad)
+    print_player_stats(playerdata)
+
+
+def print_player_stats(player_statistics):
+
+    print("\n|"+"-"*40+"|\n")
+
+    for user in players:
+        player = player_statistics[user]
+
+        #Statistics for Re
+        rgames = player["r"]["played"]
+        rwins = player["r"]["won"]
+        rrate = percent(rwins/rgames)
+        rscore = round(100*player["r"]["score"]/rgames)/100
+
+        #Statistics for Contra
+        cgames = player["c"]["played"]
+        cwins = player["c"]["won"]
+        crate = percent(cwins/cgames)
+        cscore = round(100*player["c"]["score"]/cgames)/100
+
+        #Statistics for Overall
+        total_games = player_statistics["total"] # Total counted, valid games
+        total_wins = rwins + cwins
+        total_rate = percent(total_wins / total_games)
+
+        print(f"""Win Percentage for {user} (Rounds):
+        Re:\t{rrate}% ({rwins} of {rgames}), {player["r"]["interval"]}
+        Contra:\t{crate}% ({cwins} of {cgames}), {player["c"]["interval"]}
+        Total:\t{total_rate}% ({total_wins} of {total_games})
+
+        Average Scores:
+        Re:\t{rscore}
+        Contra:\t{cscore}
+        """)
+
+    print("\n|"+"-"*40+"|\n")

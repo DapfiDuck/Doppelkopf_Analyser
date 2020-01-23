@@ -9,10 +9,11 @@ import game_stats
 
 player_list = ["D", "A", "M", "P"]
 
-sheet_nr = int(input("Sheets: "))
 sheets = []
 
 def main():
+
+    sheet_nr = int(input("Sheets: "))
 
     # Load sheets
     for number in range(1, sheet_nr+1):
@@ -36,7 +37,7 @@ def main():
 
     # Open Console
     print("\n|"+"-"*40+"|\n")
-    stage_interface(game_statistics, player_statistics, sheets, player_list)
+    stage_interface(game_statistics, player_statistics, sheets, player_list, p)
     run_interface()
 
     return
@@ -104,3 +105,5 @@ def print_player_stats(player_statistics):
 
 if __name__ == '__main__':
     main()
+else:
+    print("Importing Main")

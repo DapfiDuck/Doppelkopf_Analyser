@@ -146,6 +146,7 @@ def gen_user_stats(sheets):
 
     return games
 
+
 def append_significant_interval(games, p):
     for player in player_list:
 

@@ -10,6 +10,11 @@ swap_party = {
 
 player_list = ['D', 'A', 'M', 'P']
 
+def initialize(players):
+    global player_list
+
+    player_list = players
+
 def get_win_percentage_for_game(sheets):
 
     games = 0
@@ -186,7 +191,9 @@ def append_significant_interval_custom(games, p, significance):
 
 
 def reset_previous(games):
-    players = ["D", "A", "M", "P"]
+    # players = ["D", "A", "M", "P"]
+
+    players = player_list
 
     for player in players:
         games[player]["prev"] = 0

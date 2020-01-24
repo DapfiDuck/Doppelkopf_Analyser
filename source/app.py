@@ -1,4 +1,5 @@
 from csvloader import load_sheet as get
+from user_stats import initialize as init_user_stats
 from user_stats import gen_user_stats
 from user_stats import get_win_percentage_for_game as win_percentage
 from user_stats import append_significant_interval
@@ -30,6 +31,7 @@ def main():
     p["c"] = game_statistics[0][1]/games
 
     # Generate Player Stats
+    init_user_stats(player_list)
     player_statistics = gen_user_stats(sheets)
     append_significant_interval(player_statistics, p)
 

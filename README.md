@@ -50,7 +50,7 @@ When calculating the area around μ with the command ``sig [α<x]`` I use an app
 erf(x) = 2 / (1+e^(-bx))-1
 erfinv(y) = -ln(1/(1+y)-1)/b
 
-b = 2.4905
+b = 2.4095
 ```
 See comparison here: [Approximated Inverted Error Function](https://davidkowalk.github.io/Doppelkopf_Analyser/documentation/Images/ERFInv_Approx.png)
 

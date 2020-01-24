@@ -85,8 +85,8 @@ def print_player_stats(player_statistics):
         total_rate = percent(total_wins / total_games)
 
         print(f"""Win Percentage for {user} (Rounds):
-        Re:\t{rrate}% ({rwins} of {rgames}), {player["r"]["interval"]}
-        Contra:\t{crate}% ({cwins} of {cgames}), {player["c"]["interval"]}
+        Re:\t{rrate}% ({rwins} of {rgames}), Expected: {player["r"]["my"]}, {player["r"]["interval"]}
+        Contra:\t{crate}% ({cwins} of {cgames}), Expected: {player["c"]["my"]}, {player["c"]["interval"]}
         Total:\t{total_rate}% ({total_wins} of {total_games})
 
         Average Scores:

@@ -153,12 +153,14 @@ def append_significant_interval(games, p):
         # Re
         n = games[player]["r"]["played"]
         my = p["r"]*n
+        games[player]["r"]["my"] = round(my*10)/10
         sigma = sqrt(my*(1-p["r"]))
         games[player]["r"]["interval"] = (floor(my-1.96*sigma), ceil(my+1.96*sigma))
 
         # Contra
         n = games[player]["c"]["played"]
         my = p["c"]*n
+        games[player]["c"]["my"] = round(my*10)/10
         sigma = sqrt(my*(1-p["c"]))
         games[player]["c"]["interval"] = (floor(my-1.96*sigma), ceil(my+1.96*sigma))
 

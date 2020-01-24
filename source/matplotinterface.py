@@ -260,10 +260,6 @@ def print_player_stats(player_statistics):
         print(f"""Win Percentage for {user} (Rounds):
         Re:\t{rrate}% ({rwins} of {rgames}), {player["r"]["interval"]}
         Contra:\t{crate}% ({cwins} of {cgames}), {player["c"]["interval"]}
-
-        Average Scores:
-        Re:\t{rscore}
-        Contra:\t{cscore}
         """)
 
     print("\n|"+"-"*40+"|\n")

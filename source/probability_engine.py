@@ -17,6 +17,8 @@ def erf(x):
 def erfinv(y):
     # this is a rough approximation of erfinv which diverges
     # from erfinv between -0.02 and +0.02
+    # For a similar method refer to “An Ad hoc Approximation to the Gauss Error Function and a Correction Method” by Beong In Yun (Applied Mathematical Sciences, Vol. 8, 2014, no. 86)
+    # http://www.m-hikari.com/ams/ams-2014/ams-85-88-2014/yunAMS85-88-2014.pdf
     b = 2.4905
     x = -log(2/(1+y)-1)/b
     return x

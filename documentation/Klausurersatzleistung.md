@@ -1,5 +1,7 @@
-﻿# Klausurersatzleistung Informatik
+# Klausurersatzleistung Informatik
 David J. Kowalk
+
+[Rendered Version](https://davidkowalk.github.io/Doppelkopf_Analyser/documentation/html/Klausurersatzleistung)
 
 # Das Spiel
 Doppelkopf ist ein Kartenspiel in dem es darum geht las spiel von zwei Personen die größte Anzahl der 240 zu vergebenden Punkten in Form von Karten zu ergattern. Diese Punkte werden dann zu Abrechnungspunkten, abhängig von der Gewinnstufe (120, 90, 60, 30, Schwarz) und der Vorhersage der Spieler, umgerechnet und dem gewinnenden Team positiv, und dem verlierenden Team negativ aufgerechnet. Zudem wird der Wert des Spiels positiv notiert, wenn die Re-Partei gewinnt, und negativ, wenn die Contra Partei gewinnt.
@@ -35,8 +37,10 @@ Die einzelnen Spiele werden im csv-Format gespeichert und vom Programm beim Star
 ## Auswertung des Gesamt-Spiels
 Für jede Zeile wird gezählt, welche Partei gewonnen hat. Ist der Wert des Spiels positiv, hat die Re-Partei gewonnen, ist er negativ die Contra-Partei und andererseits liegt ein Unentschieden vor. Sonderspiele (Hochzeit, Trumpfarmut, Solor, etc.) werden hierbei nicht gezählt. Sind die Daten erhoben kann berechnet werden:
 
-> f: Gewinnrate 
+> f: Gewinnrate
+>
 > w: Anzahl der gewonnenen Spiele
+>
 > p: Anzahl der gespielten Spiele
 
 $$
@@ -52,7 +56,7 @@ Nun werden für die gewinnende Partei gewonnene und insgesammt gespielte Spiele 
 ```
 for sheet in sheets:
     for row_int in range(1, len(sheet)):
-    
+
         row = sheet[row_int]
         if len(row) == 5:
             games += 1
@@ -94,7 +98,7 @@ if playerscore > previous_playerscore:
 	player_party = winning_party
 else:
 	player_party = loosing_party
-``` 
+```
 
 Hat der Spieler die jeweilige Runde gewonnen, so wird auf seine Gewinnrunden und die Teilnahmen für die jeweilige Partei einen aufgezählt, sonst nur auf die Teilnahmen der verlierenden Partei.
 

@@ -40,3 +40,17 @@ The Player names do not have to be in order.
 - Generation of game statistics
 
 [Documentation (German)](http://davidkowalk.github.io/Doppelkopf_Analyser/documentation/Klausurersatzleistung)
+
+## Approximation of the Error Function
+![Approximated Error Function](https://davidkowalk.github.io/Doppelkopf_Analyser/documentation/Images/ERF_Approx.png)
+
+When calculating the area around μ with the command ``sig [α<x]`` I use an approximation of the [statistical error function](https://en.wikipedia.org/wiki/Error_function) by utilising a [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function):
+
+```
+erf(x) = 2 / (1+e^(-bx))-1
+erfinv(y) = -ln(1/(1+y)-1)/b
+
+b = 2.4905
+```
+
+For a similar, more detailed approach please refer to [this paper](http://www.m-hikari.com/ams/ams-2014/ams-85-88-2014/yunAMS85-88-2014.pdf) by Beong In Yun.

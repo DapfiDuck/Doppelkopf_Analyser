@@ -54,7 +54,7 @@ def plot_command():
             cmd_plot(command)
         elif command[0] == "generate" or command[0] == "gen":
             cmd_generate(command)
-        elif command[0] == "significance" or "sig":
+        elif command[0] == "significance" or command[0] == "sig":
             print_custom_sig(command)
     return
 
@@ -123,7 +123,7 @@ def cmd_plot(command):
             print("Insufficient Parameters\nUsage: plot development [player]")
             return
 
-        if(command[2] == "-all" or "all"):
+        if(command[2] == "-all" or command[2] == "all"):
             print("Plotting All")
             plot_all_developments()
         elif(not command[2] in players):

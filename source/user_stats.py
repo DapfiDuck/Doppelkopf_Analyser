@@ -70,7 +70,7 @@ def gen_user_stats(sheets):
 
         player = sheet[0]
 
-        for row_int in range(1, len(sheet)-1):
+        for row_int in range(1, len(sheet)):
 
             # For every row in the sheet:
             # 1. Verify that the round does not imply any special case (Trumpfarmut, Solo, etc)

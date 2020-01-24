@@ -251,23 +251,15 @@ def print_player_stats(player_statistics):
         rgames = player["r"]["played"]
         rwins = player["r"]["won"]
         rrate = percent(rwins/rgames)
-        rscore = round(100*player["r"]["score"]/rgames)/100
 
         #Statistics for Contra
         cgames = player["c"]["played"]
         cwins = player["c"]["won"]
         crate = percent(cwins/cgames)
-        cscore = round(100*player["c"]["score"]/cgames)/100
-
-        #Statistics for Overall
-        total_games = player_statistics["total"] # Total counted, valid games
-        total_wins = rwins + cwins
-        total_rate = percent(total_wins / total_games)
 
         print(f"""Win Percentage for {user} (Rounds):
         Re:\t{rrate}% ({rwins} of {rgames}), {player["r"]["interval"]}
         Contra:\t{crate}% ({cwins} of {cgames}), {player["c"]["interval"]}
-        Total:\t{total_rate}% ({total_wins} of {total_games})
 
         Average Scores:
         Re:\t{rscore}

@@ -54,4 +54,5 @@ b = 2.40863769
 ```
 See comparison here: [Approximated Inverted Error Function](https://davidkowalk.github.io/Doppelkopf_Analyser/documentation/Images/ERFInv_Approx.png)
 
+This specific value was calculated [here](http://www.github.com/davidkowalk/erf-approximation).
 For a similar, more detailed approach please refer to [this paper](http://www.m-hikari.com/ams/ams-2014/ams-85-88-2014/yunAMS85-88-2014.pdf) by Beong In Yun.
